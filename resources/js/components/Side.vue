@@ -8,19 +8,26 @@
             <nav class="navbar-dark">
                 <ul class="navbar-nav">
                     <li>
-                        <div class="text-muted small fw-bold text-uppercase px-3">
-                            CORE
+                        <div class="text-muted small fw-bold text-uppercase px-3 mb-3">
+                            Header
                         </div>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-3 active">
+                        <router-link to="/examples" class="nav-link px-3">
                             <span class="me-2"><i class="bi bi-speedometer2"></i></span>
-                            <span>Dashboard</span>
-                        </a>
+                            <span>Examples</span>
+                        </router-link>
+                        <router-link to="/examples/create" class="nav-link px-3">
+                            <span class="me-2"><i class="bi bi-speedometer2"></i></span>
+                            <span>Create Example</span>
+                        </router-link>
+
                     </li>
+
                     <li class="my-4">
                         <hr class="dropdown-divider bg-light"/>
                     </li>
+
                     <li>
                         <div class="text-muted small fw-bold text-uppercase px-3 mb-3">
                             Interface
@@ -35,49 +42,27 @@
                             <span class="me-2"><i class="bi bi-layout-split"></i></span>
                             <span>Layouts</span>
                             <span class="ms-auto">
-                  <span class="right-icon">
-                    <i class="bi bi-chevron-down"></i>
-                  </span>
-                </span>
+                                <span class="right-icon">
+                                    <i class="bi bi-chevron-down"></i>
+                                </span>
+                            </span>
                         </a>
                         <div class="collapse" id="layouts">
                             <ul class="navbar-nav ps-3">
                                 <li>
                                     <a href="#" class="nav-link px-3">
-                      <span class="me-2"
-                      ><i class="bi bi-speedometer2"></i
-                      ></span>
+                                        <span class="me-2">
+                                            <i class="bi bi-speedometer2"></i>
+                                        </span>
                                         <span>Dashboard</span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                     </li>
-                    <li>
-                        <a href="#" class="nav-link px-3">
-                            <span class="me-2"><i class="bi bi-book-fill"></i></span>
-                            <span>Pages</span>
-                        </a>
-                    </li>
+
                     <li class="my-4">
                         <hr class="dropdown-divider bg-light"/>
-                    </li>
-                    <li>
-                        <div class="text-muted small fw-bold text-uppercase px-3 mb-3">
-                            Addons
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-3">
-                            <span class="me-2"><i class="bi bi-graph-up"></i></span>
-                            <span>Charts</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-3">
-                            <span class="me-2"><i class="bi bi-table"></i></span>
-                            <span>Tables</span>
-                        </a>
                     </li>
                 </ul>
             </nav>

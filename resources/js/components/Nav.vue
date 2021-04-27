@@ -11,10 +11,8 @@
                 <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
             </button>
             <a class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" href="#">
-                Frontendfunn
+                Laravel / Vue CMS
             </a>
-            <router-link to="/examples" class="nav-item nav-link">Examples List</router-link>
-            <router-link to="/examples/create" class="nav-item nav-link">Create Example</router-link>
             <button
                 class="navbar-toggler"
                 type="button"

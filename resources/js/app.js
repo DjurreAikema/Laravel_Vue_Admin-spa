@@ -5,6 +5,7 @@
  */
 
 import Vue from "vue";
+import 'bootstrap';
 
 require('./bootstrap');
 window.Vue = require('vue');
@@ -41,6 +42,7 @@ Vue.use(VueAxios, axios);
 
 const router = new VueRouter({
     mode: 'history',
+    linkExactActiveClass: 'active',
     routes: routes
 });
 

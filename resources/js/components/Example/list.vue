@@ -1,30 +1,45 @@
 <template>
     <div>
-        <h2 class="text-center">Examples List</h2>
-
-        <table class="table">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Details</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="example in examples" :key="example.id">
-                <td>{{ example.id }}</td>
-                <td>{{ example.name }}</td>
-                <td>{{ example.details }}</td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <router-link :to="{name: 'EditExample', params: { id: example.id }}" class="btn btn-success">Edit</router-link>
-                        <button class="btn btn-danger" @click="deleteExample(example.id)">Delete</button>
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <div class="card">
+                    <div class="card-header">
+                        <span><i class="bi bi-table me-2"></i></span> Examples List
                     </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table
+                                id="example"
+                                class="table table-striped data-table"
+                                style="width: 100%"
+                            >
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Details</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="example in examples" :key="example.id">
+                                        <td>{{ example.id }}</td>
+                                        <td>{{ example.name }}</td>
+                                        <td>{{ example.details }}</td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <router-link :to="{name: 'EditExample', params: { id: example.id }}" class="btn btn-success">Edit</router-link>
+                                                <button class="btn btn-danger" @click="deleteExample(example.id)">Delete</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
