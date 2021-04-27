@@ -21,7 +21,6 @@
                             <span class="me-2"><i class="bi bi-speedometer2"></i></span>
                             <span>Create Example</span>
                         </router-link>
-
                     </li>
 
                     <li class="my-4">

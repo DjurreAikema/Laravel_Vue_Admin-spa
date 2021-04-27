@@ -59,9 +59,15 @@ class ExampleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id): \Illuminate\Http\JsonResponse
+    public function update(Request $request): \Illuminate\Http\JsonResponse
     {
-        $example = Example::find($id);
+        $this->validate($request, [
+            'id' => 'required',
+            'name' => 'required',
+            'details' => 'required'
+        ]);
+
+        $example = Example::find($request->id);
         $example->update($request->all());
 
         return response()->json('Example updated!');
