@@ -30,6 +30,7 @@ import { routes } from './routes';
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('nav-component', require('./components/Nav.vue').default);
 Vue.component('side-component', require('./components/Side.vue').default);
+Vue.component('Modal', require('./components/Modal.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

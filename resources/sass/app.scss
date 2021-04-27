@@ -1,13 +1,5 @@
-//// Fonts
-//@import url('https://fonts.googleapis.com/css?family=Nunito');
-//
-//// Variables
-//@import 'variables';
-
-// Bootstrap
 @import "~bootstrap/scss/bootstrap";
 
-//@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
 body,
 button {
     font-family: "Inter", sans-serif;
@@ -55,5 +47,5 @@ button {
 }
 
 .active {
-    background-color: rgba(0,0,0,0.7); !important;
+    background-color: rgba(0,0,0,0.7) !important;
 }

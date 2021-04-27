@@ -37,7 +37,7 @@
                                     <td>{{ example.details }}</td>
                                     <td style="text-align: right">
                                         <router-link :to="{name: 'EditExample', params: { id: example.id }}" class="btn btn-outline-success btn-sm">Edit</router-link>
-                                        <button class="btn btn-outline-danger btn-sm" @click="deleteExample(example.id)">Delete</button>
+                                        <button class="btn btn-outline-danger btn-sm" @click="confirmDeleteItem(example.id)">Delete</button>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -46,15 +46,13 @@
                     </div>
                 </div>
             </div>
-
-            <div>
-                <b-button v-b-modal.modal-1>Launch demo modal</b-button>
-
-                <b-modal id="modal-1" title="BootstrapVue">
-                    <p class="my-4">Hello from modal!</p>
-                </b-modal>
-            </div>
         </div>
+
+        <Modal :isVisible="deleteItemModalVisible" @cancel="deleteItemModalVisible = false" @confirm="deleteExample(itemToDelete)">
+            <h3 slot="header">Delete</h3>
+            <div slot="body">Are you sure you want to delete this Example?</div>
+            <button slot="btn-confirm" class="btn btn-outline-danger" @click="emitConfirm">Delete</button>
+        </Modal>
     </div>
 </template>
 
@@ -63,14 +61,8 @@ export default {
     data() {
         return {
             examples: [],
-            editData: {
-                name: '',
-                details: ''
-            },
-            isAdding: false,
-            addModal: false,
-            editModal: false,
-            deleteModal: false,
+            deleteItemModalVisible: false,
+            itemToDelete: 0,
         }
     },
     created() {
@@ -83,6 +75,10 @@ export default {
         });
     },
     methods: {
+        confirmDeleteItem(id){
+            this.deleteItemModalVisible = true;
+            this.itemToDelete = id;
+        },
         updateExample() {
             this.axios
                 .patch(`/api/examples`, this.editData);
@@ -94,6 +90,7 @@ export default {
                     let i = this.examples.map(data => data.id).indexOf(id);
                     this.examples.splice(i, 1)
                 });
+            this.deleteItemModalVisible = false;
         }
     }
 }
