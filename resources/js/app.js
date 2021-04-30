@@ -5,7 +5,6 @@
  */
 
 import Vue from "vue";
-import 'bootstrap';
 
 require('./bootstrap');
 window.Vue = require('vue');
@@ -31,6 +30,7 @@ import { routes } from './routes';
 Vue.component('nav-component', require('./components/Nav.vue').default);
 Vue.component('side-component', require('./components/Side.vue').default);
 Vue.component('Modal', require('./components/Modal.vue').default);
+Vue.component('Bs-Modal', require('./components/Bs-Modal.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -42,10 +42,10 @@ Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 
 //Import v-from
-import { Form, HasError, AlertError } from 'vform'
+import { Form } from 'vform'
+import { HasError } from 'vform/src/components/bootstrap5'
 window.Form = Form;
 Vue.component(HasError.name, HasError)
-Vue.component(AlertError.name, AlertError)
 
 const router = new VueRouter({
     mode: 'history',

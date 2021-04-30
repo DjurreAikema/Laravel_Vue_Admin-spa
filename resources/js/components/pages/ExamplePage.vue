@@ -123,7 +123,6 @@ export default {
                 .post('/api/examples', this.example)
                 .catch(err => console.log(err))
                 .finally(() => this.loading = false)
-            this.examples = {}
             this.addItemModalVisible = false;
             this.getExamples()
         },

@@ -13,30 +13,25 @@ class ExampleController extends Controller
      */
     public function index(): array
     {
+        //return Example::latest()->get();
         $examples = Example::all()->toArray();
         return array_reverse($examples);
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): \Illuminate\Http\JsonResponse
+    public function store(Request $request)
     {
-        $example = new Example([
+        $this->validate($request, [
+            'name' => 'required',
+            'details' => 'required'
+        ]);
+
+        return Example::create([
             'name' => $request->name,
             'details' => $request->details
         ]);
-        $example->save();
-
-        return response()->json('Example was created');
     }
 
     /**
@@ -46,14 +41,6 @@ class ExampleController extends Controller
     {
         $example = Example::find($id);
         return response()->json($example);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Example $example)
-    {
-        //
     }
 
     /**
@@ -67,10 +54,10 @@ class ExampleController extends Controller
             'details' => 'required'
         ]);
 
-        $example = Example::find($request->id);
+        $example = Example::findOrFail($request->id);
         $example->update($request->all());
 
-        return response()->json('Example updated!');
+        return response()->json('Example updated successfully');
     }
 
     /**
@@ -78,9 +65,9 @@ class ExampleController extends Controller
      */
     public function destroy($id): \Illuminate\Http\JsonResponse
     {
-        $example = Example::find($id);
+        $example = Example::findOrFail($id);
         $example->delete();
 
-        return response()->json('Example deleted!');
+        return response()->json('Example deleted successfully');
     }
 }
