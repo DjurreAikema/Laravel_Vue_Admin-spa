@@ -41,6 +41,12 @@ Vue.component('Modal', require('./components/Modal.vue').default);
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 
+//Import v-from
+import { Form, HasError, AlertError } from 'vform'
+window.Form = Form;
+Vue.component(HasError.name, HasError)
+Vue.component(AlertError.name, AlertError)
+
 const router = new VueRouter({
     mode: 'history',
     linkExactActiveClass: 'active',

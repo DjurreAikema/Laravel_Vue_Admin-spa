@@ -5258,8 +5258,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     isVisible: Boolean
@@ -5345,11 +5343,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       examples: [],
+      example: {},
       deleteItemModalVisible: false,
+      addItemModalVisible: false,
       itemToDelete: 0
     };
   },
@@ -5363,24 +5382,42 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    getExamples: function getExamples() {
+      var _this2 = this;
+
+      this.axios.get('/api/examples/').then(function (response) {
+        _this2.examples = response.data;
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
     confirmDeleteItem: function confirmDeleteItem(id) {
       this.deleteItemModalVisible = true;
       this.itemToDelete = id;
     },
-    updateExample: function updateExample() {
-      this.axios.patch("/api/examples", this.editData);
-    },
     deleteExample: function deleteExample(id) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.axios["delete"]("/api/examples/".concat(id)).then(function (response) {
-        var i = _this2.examples.map(function (data) {
+        var i = _this3.examples.map(function (data) {
           return data.id;
         }).indexOf(id);
 
-        _this2.examples.splice(i, 1);
+        _this3.examples.splice(i, 1);
       });
       this.deleteItemModalVisible = false;
+    },
+    addExample: function addExample() {
+      var _this4 = this;
+
+      this.axios.post('/api/examples', this.example)["catch"](function (err) {
+        return console.log(err);
+      })["finally"](function () {
+        return _this4.loading = false;
+      });
+      this.examples = {};
+      this.addItemModalVisible = false;
+      this.getExamples();
     }
   }
 });
@@ -5404,6 +5441,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
+/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.es.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -5441,7 +5479,12 @@ vue__WEBPACK_IMPORTED_MODULE_5__.default.component('Modal', __webpack_require__(
  */
 
 vue__WEBPACK_IMPORTED_MODULE_5__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_6__.default);
-vue__WEBPACK_IMPORTED_MODULE_5__.default.use((vue_axios__WEBPACK_IMPORTED_MODULE_2___default()), (axios__WEBPACK_IMPORTED_MODULE_3___default()));
+vue__WEBPACK_IMPORTED_MODULE_5__.default.use((vue_axios__WEBPACK_IMPORTED_MODULE_2___default()), (axios__WEBPACK_IMPORTED_MODULE_3___default())); //Import v-from
+
+
+window.Form = vform__WEBPACK_IMPORTED_MODULE_7__.Form;
+vue__WEBPACK_IMPORTED_MODULE_5__.default.component(vform__WEBPACK_IMPORTED_MODULE_7__.HasError.name, vform__WEBPACK_IMPORTED_MODULE_7__.HasError);
+vue__WEBPACK_IMPORTED_MODULE_5__.default.component(vform__WEBPACK_IMPORTED_MODULE_7__.AlertError.name, vform__WEBPACK_IMPORTED_MODULE_7__.AlertError);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_6__.default({
   mode: 'history',
   linkExactActiveClass: 'active',
@@ -41554,6 +41597,26 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/vform/dist/vform.es.js":
+/*!*********************************************!*\
+  !*** ./node_modules/vform/dist/vform.es.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "Errors": () => (/* binding */ y),
+/* harmony export */   "Form": () => (/* binding */ g)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+var e=Object.defineProperty,t=Object.prototype.hasOwnProperty,r=Object.getOwnPropertySymbols,s=Object.prototype.propertyIsEnumerable,o=(t,r,s)=>r in t?e(t,r,{enumerable:!0,configurable:!0,writable:!0,value:s}):t[r]=s,a=(e,a)=>{for(var i in a||(a={}))t.call(a,i)&&o(e,i,a[i]);if(r)for(var i of r(a))s.call(a,i)&&o(e,i,a[i]);return e};const n=e=>void 0===e,l=e=>Array.isArray(e),c=e=>e&&"number"==typeof e.size&&"string"==typeof e.type&&"function"==typeof e.slice,h=(e,t,r,s)=>((t=t||{}).indices=!n(t.indices)&&t.indices,t.nullsAsUndefineds=!n(t.nullsAsUndefineds)&&t.nullsAsUndefineds,t.booleansAsIntegers=!n(t.booleansAsIntegers)&&t.booleansAsIntegers,t.allowEmptyArrays=!n(t.allowEmptyArrays)&&t.allowEmptyArrays,r=r||new FormData,n(e)||(null===e?t.nullsAsUndefineds||r.append(s,""):(e=>"boolean"==typeof e)(e)?t.booleansAsIntegers?r.append(s,e?1:0):r.append(s,e):l(e)?e.length?e.forEach(((e,o)=>{const a=s+"["+(t.indices?o:"")+"]";h(e,t,r,a)})):t.allowEmptyArrays&&r.append(s+"[]",""):(e=>e instanceof Date)(e)?r.append(s,e.toISOString()):!(e=>e===Object(e))(e)||(e=>c(e)&&"string"==typeof e.name&&("object"==typeof e.lastModifiedDate||"number"==typeof e.lastModified))(e)||c(e)?r.append(s,e):Object.keys(e).forEach((o=>{const a=e[o];if(l(a))for(;o.length>2&&o.lastIndexOf("[]")===o.length-2;)o=o.substring(0,o.length-2);h(a,t,r,s?s+"["+o+"]":o)}))),r);var u={serialize:h};function d(e){if(null===e||"object"!=typeof e)return e;const t=Array.isArray(e)?[]:{};return Object.keys(e).forEach((r=>{t[r]=d(e[r])})),t}function p(e){return Array.isArray(e)?e:[e]}function f(e){return e instanceof File||e instanceof Blob||e instanceof FileList||"object"==typeof e&&null!==e&&void 0!==Object.values(e).find((e=>f(e)))}class y{constructor(){this.errors={},this.errors={}}set(e,t){"object"==typeof e?this.errors=e:this.set(a(a({},this.errors),{[e]:p(t)}))}all(){return this.errors}has(e){return Object.prototype.hasOwnProperty.call(this.errors,e)}hasAny(...e){return e.some((e=>this.has(e)))}any(){return Object.keys(this.errors).length>0}get(e){if(this.has(e))return this.getAll(e)[0]}getAll(e){return p(this.errors[e]||[])}only(...e){const t=[];return e.forEach((e=>{const r=this.get(e);r&&t.push(r)})),t}flatten(){return Object.values(this.errors).reduce(((e,t)=>e.concat(t)),[])}clear(e){const t={};e&&Object.keys(this.errors).forEach((r=>{r!==e&&(t[r]=this.errors[r])})),this.set(t)}}class g{constructor(e={}){this.originalData={},this.busy=!1,this.successful=!1,this.errors=new y,this.progress=void 0,this.update(e)}static make(e){return new this(e)}update(e){this.originalData=Object.assign({},this.originalData,d(e)),Object.assign(this,e)}fill(e={}){this.keys().forEach((t=>{this[t]=e[t]}))}data(){return this.keys().reduce(((e,t)=>a(a({},e),{[t]:this[t]})),{})}keys(){return Object.keys(this).filter((e=>!g.ignore.includes(e)))}startProcessing(){this.errors.clear(),this.busy=!0,this.successful=!1,this.progress=void 0}finishProcessing(){this.busy=!1,this.successful=!0,this.progress=void 0}clear(){this.errors.clear(),this.successful=!1,this.progress=void 0}reset(){Object.keys(this).filter((e=>!g.ignore.includes(e))).forEach((e=>{this[e]=d(this.originalData[e])}))}get(e,t={}){return this.submit("get",e,t)}post(e,t={}){return this.submit("post",e,t)}patch(e,t={}){return this.submit("patch",e,t)}put(e,t={}){return this.submit("put",e,t)}delete(e,t={}){return this.submit("delete",e,t)}submit(e,t,r={}){return this.startProcessing(),r=a({data:{},params:{},url:this.route(t),method:e,onUploadProgress:this.handleUploadProgress.bind(this)},r),"get"===e.toLowerCase()?r.params=a(a({},this.data()),r.params):(r.data=a(a({},this.data()),r.data),f(r.data)&&(r.transformRequest=[e=>u.serialize(e)])),new Promise(((e,t)=>{(g.axios||(axios__WEBPACK_IMPORTED_MODULE_0___default())).request(r).then((t=>{this.finishProcessing(),e(t)})).catch((e=>{this.handleErrors(e),t(e)}))}))}handleErrors(e){this.busy=!1,this.progress=void 0,e.response&&this.errors.set(this.extractErrors(e.response))}extractErrors(e){return e.data&&"object"==typeof e.data?e.data.errors?a({},e.data.errors):e.data.message?{error:e.data.message}:a({},e.data):{error:g.errorMessage}}handleUploadProgress(e){this.progress={total:e.total,loaded:e.loaded,percentage:Math.round(100*e.loaded/e.total)}}route(e,t={}){let r=e;return Object.prototype.hasOwnProperty.call(g.routes,e)&&(r=decodeURI(g.routes[e])),"object"!=typeof t&&(t={id:t}),Object.keys(t).forEach((e=>{r=r.replace(`{${e}}`,t[e])})),r}onKeydown(e){const t=e.target;t.name&&this.errors.clear(t.name)}}g.routes={},g.errorMessage="Something went wrong. Please try again.",g.ignore=["busy","successful","errors","progress","originalData"];/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (g);
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-axios/dist/vue-axios.es5.js":
 /*!******************************************************!*\
   !*** ./node_modules/vue-axios/dist/vue-axios.es5.js ***!
@@ -42944,32 +43007,26 @@ var render = function() {
     [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-12 px-4 my-2" }, [
-          _c(
-            "h1",
-            [
-              _vm._v("\n                Examples\n                "),
-              _c(
-                "router-link",
-                {
-                  staticClass: "btn btn-outline-primary btn-lg mx-4",
-                  attrs: { to: "/examples/create" }
-                },
-                [
-                  _c("span", { staticClass: "me-2" }, [
-                    _c("i", { staticClass: "bi bi-plus-square" })
-                  ]),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("Create Example")])
-                ]
-              )
-            ],
-            1
-          )
+          _c("h1", [
+            _vm._v("\n                Examples\n                "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-primary btn mx-4",
+                on: {
+                  click: function($event) {
+                    _vm.addItemModalVisible = true
+                  }
+                }
+              },
+              [_vm._m(0), _vm._v(" "), _c("span", [_vm._v("Create Example")])]
+            )
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-12 mb-3 px-4 my-1" }, [
           _c("div", { staticClass: "card" }, [
-            _vm._m(0),
+            _vm._m(1),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _c("div", { staticClass: "table-responsive" }, [
@@ -42981,7 +43038,7 @@ var render = function() {
                     attrs: { id: "example" }
                   },
                   [
-                    _vm._m(1),
+                    _vm._m(2),
                     _vm._v(" "),
                     _c(
                       "tbody",
@@ -43053,7 +43110,7 @@ var render = function() {
         },
         [
           _c("h3", { attrs: { slot: "header" }, slot: "header" }, [
-            _vm._v("Delete")
+            _vm._v("Delete example")
           ]),
           _vm._v(" "),
           _c("div", { attrs: { slot: "body" }, slot: "body" }, [
@@ -43065,10 +43122,106 @@ var render = function() {
             {
               staticClass: "btn btn-outline-danger",
               attrs: { slot: "btn-confirm" },
-              on: { click: _vm.emitConfirm },
               slot: "btn-confirm"
             },
-            [_vm._v("Delete")]
+            [_vm._v("Delete example")]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "Modal",
+        {
+          attrs: { isVisible: _vm.addItemModalVisible },
+          on: {
+            cancel: function($event) {
+              _vm.addItemModalVisible = false
+            },
+            confirm: function($event) {
+              return _vm.addExample()
+            }
+          }
+        },
+        [
+          _c("h3", { attrs: { slot: "header" }, slot: "header" }, [
+            _vm._v("Add Example")
+          ]),
+          _vm._v(" "),
+          _c("div", { attrs: { slot: "body" }, slot: "body" }, [
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.addExample($event)
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Name")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.example.name,
+                        expression: "example.name"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.example.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.example, "name", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Details")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.example.details,
+                        expression: "example.details"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.example.details },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.example, "details", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-success",
+              attrs: { slot: "btn-confirm", type: "submit" },
+              slot: "btn-confirm"
+            },
+            [_vm._v("Create Example")]
           )
         ]
       )
@@ -43077,6 +43230,14 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "me-2" }, [
+      _c("i", { staticClass: "bi bi-plus-square" })
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

@@ -68,13 +68,11 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </transition>
 </template>
-
 
 <script>
     export default {
