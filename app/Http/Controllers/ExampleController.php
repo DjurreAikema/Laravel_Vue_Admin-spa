@@ -13,7 +13,6 @@ class ExampleController extends Controller
      */
     public function index(): array
     {
-        //return Example::latest()->get();
         $examples = Example::all()->toArray();
         return array_reverse($examples);
     }

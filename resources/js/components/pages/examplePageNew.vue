@@ -7,7 +7,8 @@
                         <h3 class="card-title">Example Table</h3>
                         <div class="card-tools">
                             <button class="btn btn-success" @click="openModalWindow">
-                                Add New Example <i class="fas fa-user-plus fa-fw"></i>
+                                <span class="me-2"><i class="bi bi-plus-square"></i></span>
+                                <span>Create Example</span>
                             </button>
                         </div>
                     </div>
@@ -71,7 +72,7 @@
 
             <div slot="btn-confirm">
                 <button form="modalForm" v-show="editMode" type="submit" class="btn btn-outline-primary">Update</button>
-                <button form="modalForm" v-show="!editMode" type="submit" class="btn btn-outline-success">Create</button>
+                <button form="modalForm" v-show="!editMode" type="submit" class="btn btn-outline-success">Createw</button>
             </div>
         </Bs-Modal>
     </div>
@@ -93,7 +94,7 @@ export default {
     },
     methods: {
         editModalWindow(example) {
-            this.form.clear();
+            // this.form.clear();
             this.editMode = true
             this.form.reset();
             this.showForm = true;

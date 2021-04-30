@@ -26,11 +26,9 @@ import { routes } from './routes';
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('nav-component', require('./components/Nav.vue').default);
 Vue.component('side-component', require('./components/Side.vue').default);
 Vue.component('Modal', require('./components/Modal.vue').default);
-Vue.component('Bs-Modal', require('./components/Bs-Modal.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
