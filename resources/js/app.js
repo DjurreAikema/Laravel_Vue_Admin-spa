@@ -14,6 +14,7 @@ import VueAxios from 'vue-axios';
 import VueRouter from 'vue-router';
 import axios from 'axios';
 import { routes } from './routes';
+import store from './store'
 
 /**
  * The following block of code may be used to automatically register your
@@ -52,6 +53,7 @@ const router = new VueRouter({
 });
 
 const app = new Vue({
+    store,
     el: '#app',
     router: router,
     render: h => h(App),
