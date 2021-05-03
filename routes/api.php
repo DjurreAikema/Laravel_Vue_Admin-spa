@@ -19,8 +19,12 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('examples', ExampleController::class);
 Route::post('register', [AuthenticationController::class, 'register']);
 Route::post('login', [AuthenticationController::class, 'login']);
+Route::post('logout', [AuthenticationController::class, 'logout']);
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+Route::middleware('auth:sanctum')->get('/authenticated', function () {
+    return true;
 });
 

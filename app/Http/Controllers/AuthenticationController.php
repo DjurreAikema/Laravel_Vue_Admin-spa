@@ -38,4 +38,8 @@ class AuthenticationController extends Controller
             'email' => ['Email or password are incorrect']
         ]);
     }
+
+    public function logout() {
+        Auth::logout();
+    }
 }
