@@ -1,7 +1,7 @@
 import AdminExamplesPage from './components/Admin/Pages/ExamplePage';
 import LoginPage from './components/pages/LoginPage';
 import RegisterPage from './components/pages/RegisterPage';
-import AdminShell from './components/Admin/Pages/MainPage';
+import AdminShell from './components/Admin/AdminShell';
 
 export const routes = [
     {
@@ -14,11 +14,6 @@ export const routes = [
         name: 'register',
         component: RegisterPage,
     },
-    // {
-    //     name: 'Examples',
-    //     path: '/examples',
-    //     component: AdminExamplesPage
-    // },
     {
         path: '/admin',
         name: 'admin',
