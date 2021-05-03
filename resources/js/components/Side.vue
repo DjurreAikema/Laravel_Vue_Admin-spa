@@ -14,12 +14,8 @@
                     </li>
                     <li>
                         <router-link to="/examples" class="nav-link px-3">
-                            <span class="me-2"><i class="bi bi-speedometer2"></i></span>
+                            <span class="me-2"><i class="bi bi-archive"></i></span>
                             <span>Examples</span>
-                        </router-link>
-                        <router-link to="/examples/create" class="nav-link px-3">
-                            <span class="me-2"><i class="bi bi-speedometer2"></i></span>
-                            <span>Create Example</span>
                         </router-link>
                     </li>
 

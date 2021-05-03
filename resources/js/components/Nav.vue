@@ -47,13 +47,15 @@
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
                         >
+                            {{currentUser.name}}
                             <i class="bi bi-person-fill"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                            <li style="cursor: pointer;">
+                                <router-link to="/profile" class="dropdown-item">Profile</router-link>
+                            </li>
+                            <li style="cursor: pointer;">
+                                <a class="dropdown-item" @click.prevent="logout">Logout</a>
                             </li>
                         </ul>
                     </li>
@@ -62,3 +64,20 @@
         </div>
     </nav>
 </template>
+
+<script>
+export default {
+    methods: {
+        logout(){
+            this.$store.dispatch('currentUser/logoutUser')
+        }
+    },
+    computed: {
+        currentUser: {
+            get() {
+                return this.$store.state.currentUser.user;
+            }
+        }
+    }
+}
+</script>

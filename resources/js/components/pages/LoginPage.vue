@@ -23,6 +23,7 @@
                     </p>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary" type="submit" @click.prevent="loginUser">Sign in</button>
+                <button class="w-100 btn btn-outline-success my-3" type="submit" @click.prevent="loginAsAdmin">Sign in as admin</button>
             </form>
         </main>
     </div>
@@ -44,6 +45,14 @@ export default {
                 .then(() => {
                     this.$router.push({name: "admin_examples"});
                 }).catch(err => console.log(err))
+        },
+        loginAsAdmin() {
+            axios.post('/api/login', {
+                email: 'admin@admin.com',
+                password: 'password'
+            }).then(() => {
+                this.$router.push({name: "admin_examples"});
+            }).catch(err => console.log(err))
         }
     }
 }
