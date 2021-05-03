@@ -1,36 +1,57 @@
 <template>
-    <main class="form-signin">
-        <form>
-            <h1 class="h3 mb-3 fw-normal">Please Sign In</h1>
-            <div class="form-floating">
-                <input type="email" class="form-control" id="emailLogin" placeholder="name@example.com">
-                <label for="emailLogin">Email Address</label>
-            </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" id="passwordLogin" placeholder="Password">
-                <label for="passwordLogin">Password</label>
-            </div>
-            <div class="mb-3">
-                <p>
-                    Don't have an account yet? <router-link to="/register" class="btn btn-sm btn-outline-primary">Sign Up.</router-link>
-                </p>
-            </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-        </form>
-    </main>
+    <div class="background">
+        <main class="form-signin">
+            <form>
+                <h1 class="h3 mb-3 fw-normal">Please Sign In</h1>
+                <div class="form-floating">
+                    <input v-model="form.email" type="email" name="email"
+                           placeholder="name@example.com" id="emailLogin"
+                           class="form-control" :class="{ 'is-invalid': form.errors.has('email') }">
+                    <label for="emailLogin">Email Address</label>
+                    <has-error :form="form" field="email"></has-error>
+                </div>
+                <div class="form-floating">
+                    <input v-model="form.password" type="password" name="password"
+                           placeholder="Password" id="passwordLogin"
+                           class="form-control" :class="{ 'is-invalid': form.errors.has('password') }">
+                    <label for="passwordLogin">Password</label>
+                    <has-error :form="form" field="password"></has-error>
+                </div>
+                <div class="mb-3">
+                    <p>
+                        Don't have an account yet? <router-link to="/register" class="btn btn-sm btn-outline-primary">Sign Up.</router-link>
+                    </p>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit" @click.prevent="loginUser">Sign in</button>
+            </form>
+        </main>
+    </div>
 </template>
 
 <script>
-
+export default {
+    data() {
+        return {
+            form: new Form({
+                name: '',
+                password: '',
+            }),
+        }
+    },
+    methods: {
+        loginUser() {
+            this.form.post('/api/login')
+                .then(() => {
+                    this.$router.push({name: "admin_examples"});
+                }).catch(err => console.log(err))
+        }
+    }
+}
 </script>
 
 <style>
-    html,
-    body {
+    .background {
         height: 100vh;
-    }
-
-    body {
         text-align: center;
         display: flex;
         align-items: center;
