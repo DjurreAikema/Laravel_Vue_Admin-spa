@@ -12,13 +12,17 @@
             </div>
             <div class="mb-3">
                 <p>
-                    Don't have an account yet? <button class="btn btn-sm btn-outline-primary">Sign Up.</button>
+                    Don't have an account yet? <router-link to="/register" class="btn btn-sm btn-outline-primary">Sign Up.</router-link>
                 </p>
             </div>
             <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
         </form>
     </main>
 </template>
+
+<script>
+
+</script>
 
 <style>
     html,
