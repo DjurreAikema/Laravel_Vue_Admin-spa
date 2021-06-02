@@ -1,5 +1,5 @@
 <h1>Single page admin management application</h1>
-<p>Created using Laraven and Vue.js</p>
+<p>Created using Laravel and Vue.js</p>
 
 The login page:
 ![SPA-login](https://user-images.githubusercontent.com/17196081/120483371-55710f80-c3b2-11eb-8170-30a6d529f63c.PNG)
